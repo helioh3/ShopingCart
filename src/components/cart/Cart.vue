@@ -5,7 +5,6 @@
         :product="product"
         @delete="deleteProduct"
       />
-
     </div>
 
     <hr>
@@ -16,7 +15,7 @@
       </a>
 
       <div>
-        <small class="text-muted">Total:</small> <span class="fs-5">R$200.20</span>
+        <small class="text-muted">Total:</small> <span class="fs-5">{{ total }}</span>
       </div>
     </div>
   </div>
@@ -25,13 +24,18 @@
 import Product from '@/components/cart/Product.vue'
 
 export default {
-  data () {
-    return {}
-  },
   props: {
     products: {
       type: Array,
       default: () => ([])
+    }
+  },
+  computed: {
+    total() {
+      return this.products.reduce((getVal, item) => {
+        getVal += item.qty * item.amount
+        return getVal
+      }, 0)
     }
   },
   components: {

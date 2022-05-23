@@ -21,8 +21,8 @@
         style="width: 120px"
     >
       <div class="input-group">
-        <button @click="remove()" :disabled="qty <= 0" class="btn btn-outline-secondary" type="button">-</button>
-        <input type="text" :value="qty" readonly class="form-control text-center">
+        <button @click="remove()" :disabled="product.qty <= 1" class="btn btn-outline-secondary" type="button">-</button>
+        <input type="text" :value="product.qty" readonly class="form-control text-center">
         <button @click="add()" class="btn btn-outline-secondary" type="button">+</button>
       </div>
     </div>
@@ -44,7 +44,6 @@
 export default {
   data () {
     return {
-      qty: 1
     }
   },
   props: {
@@ -56,17 +55,19 @@ export default {
 
   computed: {
     total () {
-      return this.product.amount * this.qty
+      return this.product.amount * this.product.qty
     }
   },
   methods: {
     add () {
-      this.qty++
+      // eslint-disable-next-line vue/no-mutating-props
+      this.product.qty++
     },
     remove () {
-      if(this.qty <= 1)
+      if(this.product.qty <= 1)
         return
-      this.qty--
+      // eslint-disable-next-line vue/no-mutating-props
+      this.product.qty--
     },
     deleteProduct () {
       this.$emit('delete', this.product)
