@@ -3,7 +3,7 @@
     <div v-for="product in products" :key="product.id">
       <product
         :product="product"
-        @delete="deleteProduct"
+        @delete="deleteCart"
       />
     </div>
 
@@ -42,7 +42,7 @@ export default {
     Product
   },
   methods: {
-    deleteProduct (product) {
+    deleteCart (product) {
       this.$emit('delete', product)
     }
   }

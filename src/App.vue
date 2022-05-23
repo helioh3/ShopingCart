@@ -3,7 +3,7 @@
     <div class="container mt-5">
       <h2 class="text-center mb-5">Carrinho de compra</h2>
 
-      <cart :products="products"/>
+      <cart :products="products" @delete="deleteApp"/>
     </div>
   </div>
 
@@ -28,10 +28,10 @@ export default {
     Cart
   },
   methods: {
-    deleteProduct () {
-      const idx = this.products.findIndex( o => o.id === product.id)
+    deleteApp (product) {
+      const idx = this.products.findIndex(o => o.id === product.id)
       if(idx >= 0) {
-        this.products.push(idx, 1)
+        this.products.splice(idx, 1)
       }
     }
 
