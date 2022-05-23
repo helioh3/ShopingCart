@@ -28,6 +28,12 @@ export default {
     Cart
   },
   methods: {
+    deleteProduct () {
+      const idx = this.products.findIndex( o => o.id === product.id)
+      if(idx >= 0) {
+        this.products.push(idx, 1)
+      }
+    }
 
   }
 }
